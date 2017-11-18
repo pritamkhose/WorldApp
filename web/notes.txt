@@ -1,0 +1,6 @@
+http://www.simplecodestuffs.com/autocomplete-in-java-web-application-using-jquery-and-json/
+
+https://stackoverflow.com/questions/36887387/how-to-get-selected-value-from-autocomplete-box-using-ajax
+
+https://stackoverflow.com/questions/19322513/ajax-autocomplete-textbox-in-java-web-technology-jsp-and-servlets
+

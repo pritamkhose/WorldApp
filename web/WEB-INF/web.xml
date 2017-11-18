@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee    http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <display-name>World Application</display-name>
+    <servlet>
+        <servlet-name>AppController</servlet-name>
+        <servlet-class>com.pritam.Controller.AppController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchController</servlet-name>
+        <servlet-class>com.pritam.Controller.SearchController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AppController</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>MCtrl</servlet-name>
+        <servlet-class>com.pritam.Controller.MCtrl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MCtrl</servlet-name>
+        <url-pattern>/MCtrl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchController</servlet-name>
+        <url-pattern>/SearchController</url-pattern>
+    </servlet-mapping>
+    
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/Error.jsp</location>
+    </error-page>
+    <!--    <welcome-file-list>  
+        <welcome-file>index.jsp</welcome-file>  
+        <welcome-file>index.html</welcome-file>  
+    </welcome-file-list>  -->
+    <!-- JDBC -->
+    <!--  <context-param>
+        <param-name>jdbcURL</param-name>
+        <param-value>jdbc:mysql://localhost:3306/world</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>jdbcUsername</param-name>
+        <param-value>root</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>jdbcPassword</param-name>
+        <param-value>root</param-value>
+    </context-param>-->
+</web-app>
