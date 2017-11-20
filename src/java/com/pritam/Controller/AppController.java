@@ -1,6 +1,7 @@
 package com.pritam.Controller;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.pritam.DAO.AppConstant;
 import com.pritam.DAO.CityDAO;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import com.pritam.DAO.CountryDAO;
 import com.pritam.DAO.CtryLangDAO;
 import com.pritam.POJO.City;
 import com.pritam.POJO.CountryLang;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -55,7 +57,7 @@ public class AppController extends HttpServlet {
             throws ServletException, IOException {
         try {
 
-            //printRequestPara(request);
+            //printRequestPara(request); // http://localhost:8880/WorldApp/MCtrl?req=CityList
             switch (request.getServletPath()) {
                 case "/CountryList":
                     listCountry(request, response);
@@ -158,11 +160,16 @@ public class AppController extends HttpServlet {
         request.setAttribute("listCountry", listCountry);
         RequestDispatcher dispatcher = request.getRequestDispatcher("countryList.jsp");
         dispatcher.forward(request, response);
+        
+        
     }
 
     private void showNewFormCountry(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws SQLException, ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("countryForm.jsp");
+        CountryDAO countryDAO = new CountryDAO();
+        ArrayList<String> list = countryDAO.getCountryList();
+        request.setAttribute("continentlist", list);
         dispatcher.forward(request, response);
     }
 
@@ -200,7 +207,8 @@ public class AppController extends HttpServlet {
         );
         CountryDAO countryDAO = new CountryDAO();
         countryDAO.insertCountry(newCountry);
-        response.sendRedirect("list");
+        //response.sendRedirect("CountryList");
+        response.sendRedirect("JSONCtrl?req=CountryEdit&code="+request.getParameter("code"));
     }
 
     private void updateCountry(HttpServletRequest request, HttpServletResponse response)

@@ -1,6 +1,7 @@
 package com.pritam.Controller;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.pritam.DAO.AppConstant;
 import com.pritam.DAO.CityDAO;
 import java.io.IOException;
@@ -129,7 +130,7 @@ public class MCtrl extends HttpServlet {
                 // Set response content type
             }
 
-            response.setContentType("text/html");
+            /*response.setContentType("text/html");
 
             PrintWriter out = response.getWriter();
             String title = "Hi Pritam";
@@ -144,7 +145,7 @@ public class MCtrl extends HttpServlet {
                     + "<h2>http://localhost:8880/WorldApp/MCtrl?req=CountryList</h2>"
                     + "<h3>" + request.getRequestURI()+"<br/>"+printRequestPara(request) + "</h3>\n"
                     + "<br/><p>" + strResponse + "</p>\n"
-            );
+            );*/
         } catch (SQLException ex) {
             System.out.println("ex --> " + ex);
             throw new ServletException(ex);
@@ -274,9 +275,18 @@ public class MCtrl extends HttpServlet {
             listData = CityDAO.listAll();
         }
 
-        request.setAttribute("listData", listData);
+        /*request.setAttribute("listData", listData);
         RequestDispatcher dispatcher = request.getRequestDispatcher("cityList.jsp");
-        dispatcher.forward(request, response);
+        dispatcher.forward(request, response);*/
+        
+        PrintWriter out = response.getWriter();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonOutput = gson.toJson(listData);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(jsonOutput);
+        out.print(jsonOutput);
+        out.flush();
     }
 
     private void CityListA(HttpServletRequest request, HttpServletResponse response)

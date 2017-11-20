@@ -199,7 +199,7 @@ public class CountryDAO {
                 + " Capital = " + country.getCapital() + ", "
                 + " Code2 = '" + country.getCode2() + "' "
                 + " WHERE Code = '" + country.getCode() + "' ; ";
-        //System.out.println("newCountry --> " + country.getCode() + " - "+ sql);
+        System.out.println("newCountry --> " + country.getCode() + " - "+ sql);
 
         connect();
 
