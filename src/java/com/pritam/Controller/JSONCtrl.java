@@ -66,12 +66,17 @@ public class JSONCtrl extends HttpServlet {
                     break;
                     
                 
-                 case "CityList":{ 
+                case "CityList":{ 
                         hmData.put("data",  j.getCityList(request));
                 }
                 break;
                 case "CtryLangList":{ 
                         hmData.put("data", j.getCtryLangList(request));
+                }
+                break;
+                
+                case "WholeCtryData":{ 
+                        hmData.put("data", j.getWholeCtryData(request));
                 }
                 break;
                 

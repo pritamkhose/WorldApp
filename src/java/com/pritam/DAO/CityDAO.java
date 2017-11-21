@@ -101,7 +101,7 @@ public class CityDAO {
     public List<City> listSearch(String search) throws SQLException {
         List<City> listCity = new ArrayList<>();
 
-        String sql = "SELECT * FROM city where Name LIKE '" + search + "%' or CountryCode LIKE '" + search + "%'or District LIKE '" + search + "%'  ORDER BY CountryCode ASC LIMIT 50  ";
+        String sql = "SELECT * FROM city where Name LIKE '" + search + "%' or CountryCode LIKE '" + search + "%'or District LIKE '" + search + "%'  ORDER BY CountryCode ASC LIMIT 5000  ";
 
         connect();
 

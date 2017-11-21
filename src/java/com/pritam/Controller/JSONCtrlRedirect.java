@@ -252,4 +252,62 @@ public class JSONCtrlRedirect {
     /**
      * ****************************City****************************************
      */
+    
+    
+    
+    public LinkedHashMap<String, Object> getWholeCtryData(HttpServletRequest request)
+            throws SQLException, IOException {
+        LinkedHashMap<String, Object> data = new LinkedHashMap<>(); 
+
+        List<CountryLang> CountryLanglistData;
+        CtryLangDAO CtryLangDAO = new CtryLangDAO();
+        CountryLanglistData = CtryLangDAO.listSearch((request.getParameter("code")).replaceAll(" ", ""));
+        
+        List<City> CitylistData;
+        CityDAO CityDAO = new CityDAO();
+        CitylistData = CityDAO.listSearch((request.getParameter("code")).replaceAll(" ", ""));
+            
+        CountryDAO countryDAO = new CountryDAO();
+        Country existingCountry = countryDAO.getCountry((request.getParameter("code")).replaceAll(" ", ""));
+       
+        if (existingCountry != null) {
+            data.put("ErrorID", 0);
+            data.put("country_details", existingCountry);
+            data.put("continent_list", countryDAO.getCountryList());
+            
+            if (CountryLanglistData != null) {
+            data.put("ErrorID", 0);
+            data.put("ctryLang_details", CountryLanglistData);
+            } else {
+                data.put("ErrorID", 50);
+                data.put("ErrorString", "Not Data Found");
+            }
+            
+            if (CitylistData != null) {
+            data.put("ErrorID", 0);
+            Double total_city_population = 0.0d;
+            for(int i=0; i < CitylistData.size();i++){
+                try{
+                total_city_population += CitylistData.get(i).getPopulation();
+                } catch(Exception e){ 
+                }
+            }
+            data.put("total_city_found", CitylistData.size());
+            data.put("total_city_population", total_city_population);
+            data.put("city_details", CitylistData);
+           
+            } else {
+                data.put("ErrorID", 50);
+                data.put("ErrorString", "Not Data Found");
+            }
+            
+            
+        } else {
+            data.put("ErrorID", 50);
+            data.put("ErrorString", "Not Data Found");
+        }
+        return data;
+
+    }
+
 }

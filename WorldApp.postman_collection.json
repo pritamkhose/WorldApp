@@ -1,0 +1,225 @@
+{
+	"info": {
+		"name": "WorldApp",
+		"_postman_id": "d097a342-743a-c53a-6d90-5f38a2d32d08",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8880/WorldApp/JSONCtrl?req=WholeCtryData&code=IND",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8880/WorldApp/JSONCtrl?req=WholeCtryData&code=IND",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8880",
+					"path": [
+						"WorldApp",
+						"JSONCtrl"
+					],
+					"query": [
+						{
+							"key": "req",
+							"value": "WholeCtryData",
+							"equals": true
+						},
+						{
+							"key": "code",
+							"value": "IND",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8880/WorldApp/JSONCtrl?req=CountryEdit&code=AA4",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8880/WorldApp/JSONCtrl?req=CountryEdit&code=AA4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8880",
+					"path": [
+						"WorldApp",
+						"JSONCtrl"
+					],
+					"query": [
+						{
+							"key": "req",
+							"value": "CountryEdit",
+							"equals": true
+						},
+						{
+							"key": "code",
+							"value": "AA4",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8880/WorldApp/JSONCtrl?req=CountryDelete&code=AA7",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8880/WorldApp/JSONCtrl?req=CountryDelete&code=AA7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8880",
+					"path": [
+						"WorldApp",
+						"JSONCtrl"
+					],
+					"query": [
+						{
+							"key": "req",
+							"value": "CountryDelete",
+							"equals": true
+						},
+						{
+							"key": "code",
+							"value": "AA7",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8880/WorldApp/JSONCtrl?req=CountryInsert&code=AA9",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"results\": {\r\n\"Code\": \"AA9\",\r\n\"Name\": \"retertre\",\r\n\"Continent\": \"Asia\",\r\n\"Region\": \"India\",\r\n\"SurfaceArea\": 8680,\r\n\"IndepYear\": 2017,\r\n\"Population\": 66,\r\n\"LifeExpectancy\": 61.9,\r\n\"GNP\": 68,\r\n\"GNPOld\": 6858,\r\n\"LocalName\": \"name ljh p\",\r\n\"GovernmentForm\": \"tyt\",\r\n\"HeadOfState\": \"usa\",\r\n\"Capital\": 56.542354452,\r\n\"Code2\": \"A5\"\r\n}\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8880/WorldApp/JSONCtrl?req=CountryInsert&code=AA9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8880",
+					"path": [
+						"WorldApp",
+						"JSONCtrl"
+					],
+					"query": [
+						{
+							"key": "req",
+							"value": "CountryInsert",
+							"equals": true
+						},
+						{
+							"key": "code",
+							"value": "AA9",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8880/WorldApp/JSONCtrl?req=CountryUpdate&code=AA4",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"results\": {\r\n\"Code\": \"AA4\",\r\n\"Name\": \"saurabhpharad\",\r\n\"Continent\": \"Asia\",\r\n\"Region\": \"India\",\r\n\"SurfaceArea\": 8680,\r\n\"IndepYear\": 2017,\r\n\"Population\": 66,\r\n\"LifeExpectancy\": 61.9,\r\n\"GNP\": 68,\r\n\"GNPOld\": 6858,\r\n\"LocalName\": \"name p\",\r\n\"GovernmentForm\": \"tyt\",\r\n\"HeadOfState\": \"usa\",\r\n\"Capital\": 56,\r\n\"Code2\": \"A5\"\r\n}\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8880/WorldApp/JSONCtrl?req=CountryUpdate&code=AA4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8880",
+					"path": [
+						"WorldApp",
+						"JSONCtrl"
+					],
+					"query": [
+						{
+							"key": "req",
+							"value": "CountryUpdate",
+							"equals": true
+						},
+						{
+							"key": "code",
+							"value": "AA4",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8880/WorldApp/JSONCtrl?req=CountryList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8880/WorldApp/JSONCtrl?req=CountryList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8880",
+					"path": [
+						"WorldApp",
+						"JSONCtrl"
+					],
+					"query": [
+						{
+							"key": "req",
+							"value": "CountryList",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
