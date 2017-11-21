@@ -116,7 +116,9 @@ public class JSONCtrlRedirect {
             throws SQLException, IOException {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
 
+        Country country = new Country(request.getParameter("code"));
         CountryDAO countryDAO = new CountryDAO();
+        countryDAO.deleteCountry(country);
         Country existingCountry = countryDAO.getCountry(request.getParameter("code"));
         if (existingCountry != null) {
             data.put("ErrorID", 0);
@@ -132,28 +134,59 @@ public class JSONCtrlRedirect {
     public LinkedHashMap<String, Object> insertCountry(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
-        Country newCountry = new Country(
-                request.getParameter("code"),
-                request.getParameter("name"),
-                request.getParameter("continent"),
-                request.getParameter("region"),
-                Float.parseFloat(request.getParameter("surfaceArea")),
-                Integer.parseInt(request.getParameter("indepYear")),
-                Integer.parseInt(request.getParameter("population")),
-                Float.parseFloat(request.getParameter("lifeExpectancy")),
-                Float.parseFloat(request.getParameter("GNP")),
-                Float.parseFloat(request.getParameter("GNPOld")),
-                request.getParameter("localName"),
-                request.getParameter("governmentForm"),
-                request.getParameter("headOfState"),
-                Integer.parseInt(request.getParameter("capital")),
-                request.getParameter("code2")
-        );
-        CountryDAO countryDAO = new CountryDAO();
-        countryDAO.insertCountry(newCountry);
-        response.sendRedirect("list");
+        StringBuilder sb = new StringBuilder();
+        BufferedReader reader = request.getReader();
+        try {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);//.append('\n');
+            }
+        } finally {
+            reader.close();
+        }
 
-        data.put("results", countryDAO.getCountryList());
+        if (sb != null && sb.length() > 1) {
+            try {
+                JsonObject json = new JsonParser().parse(sb.toString()).getAsJsonObject();
+                JsonObject results = json.get("results").getAsJsonObject();
+                //System.out.println("-->" + results.get("Code"));
+                Country newCountry = new Country(
+                        results.get("Code").getAsString(),
+                        results.get("Name").getAsString(),
+                        results.get("Continent").getAsString(),
+                        results.get("Region").getAsString(),
+                        results.get("SurfaceArea").getAsFloat(),
+                        results.get("IndepYear").getAsInt(),
+                        results.get("Population").getAsInt(),
+                        results.get("LifeExpectancy").getAsFloat(),
+                        results.get("GNP").getAsFloat(),
+                        results.get("GNPOld").getAsFloat(),
+                        results.get("LocalName").getAsString(),
+                        results.get("GovernmentForm").getAsString(),
+                        results.get("HeadOfState").getAsString(),
+                        results.get("Capital").getAsInt(),
+                        results.get("Code2").getAsString()
+                );
+
+                CountryDAO countryDAO = new CountryDAO();
+                countryDAO.insertCountry(newCountry);
+                response.sendRedirect("JSONCtrl?req=CountryEdit&code=" + request.getParameter("code"));
+            } catch (Exception ex) {
+                StackTraceElement[] stack = new Exception().getStackTrace();
+                String theTrace = ex.toString() + "\n";
+                for (StackTraceElement line : stack) {
+                    theTrace += line.toString() + "\n";
+                }
+                data.put("ErrorID", 120);
+                data.put("ErrorString", "JSON Parser Error");
+                data.put("ErrorInfo", theTrace);
+            }
+
+        } else {
+            data.put("ErrorID", 90);
+            data.put("ErrorString", "Invalid insert request");
+        }
+       
         return data;
     }
 
