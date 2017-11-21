@@ -207,8 +207,7 @@ public class AppController extends HttpServlet {
         );
         CountryDAO countryDAO = new CountryDAO();
         countryDAO.insertCountry(newCountry);
-        //response.sendRedirect("CountryList");
-        response.sendRedirect("JSONCtrl?req=CountryEdit&code="+request.getParameter("code"));
+        response.sendRedirect("CountryEdit?code=" + request.getParameter("code"));
     }
 
     private void updateCountry(HttpServletRequest request, HttpServletResponse response)
