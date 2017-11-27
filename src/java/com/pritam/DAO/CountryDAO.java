@@ -269,7 +269,7 @@ public class CountryDAO {
 
     public ArrayList<String> getCountryList() throws SQLException {
         ArrayList list = new ArrayList<String>();
-        String sql = "SELECT distinct Continent FROM country order by Continent asc; ";
+        String sql = "SELECT distinct Continent FROM world.country order by Continent asc; ";
 
         connect();
 
@@ -288,7 +288,7 @@ public class CountryDAO {
 
     public ArrayList<String> getFrameWork(String search) throws SQLException {
          ArrayList list = new ArrayList<String>();
-        String sql = "SELECT Name FROM country where name LIKE '" + search + "%' ";
+        String sql = "SELECT Name FROM world.country where name LIKE '" + search + "%' ";
 
      
         connect();
