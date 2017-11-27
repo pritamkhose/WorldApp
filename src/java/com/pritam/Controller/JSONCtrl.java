@@ -18,7 +18,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.json.XML;
 /**
  *
  * @author Pritam
@@ -102,14 +104,22 @@ public class JSONCtrl extends HttpServlet {
         
         
         PrintWriter out = response.getWriter();
-//        if(request.getParameter("xml").equalsIgnoreCase("xml"))
+//        if(request.getParameter("xml").equalsIgnoreCase("on")){
 //            response.setContentType("text/xml");
+//            response.setCharacterEncoding("UTF-8");
+//            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//            JsonObject json = new JsonParser().parse(gson.toJson(hmData)).getAsJsonObject();
+//            response.getWriter().write(XML.toString(json));
+//        }
 //        else
+        {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         response.getWriter().write(gson.toJson(hmData));
+        }
         out.flush();
+        
 
     }
 }

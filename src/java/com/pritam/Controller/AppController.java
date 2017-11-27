@@ -390,7 +390,7 @@ public class AppController extends HttpServlet {
                 request.getParameter("countryCode"),
                 request.getParameter("language"),
                 request.getParameter("isOfficial"),
-                Integer.parseInt(request.getParameter("percentage"))
+                Float.parseFloat(request.getParameter("percentage"))
         );
         CtryLangDAO CtryLangDAO = new CtryLangDAO();
         CtryLangDAO.insert(newCtryLang);
@@ -404,7 +404,7 @@ public class AppController extends HttpServlet {
                 request.getParameter("countryCode"),
                 request.getParameter("language"),
                 request.getParameter("isOfficial"),
-                Integer.parseInt(request.getParameter("percentage"))
+                Float.parseFloat(request.getParameter("percentage"))
         );
         CtryLangDAO CtryLangDAO = new CtryLangDAO();
         CtryLangDAO.update(newCtryLang);
